@@ -1,4 +1,3 @@
-
 Tanishq Patil
 Tmpatil
 Spring 2020
@@ -25,3 +24,20 @@ This file includes the assembly code of the lab.
 
 Instructions
 
+This program is intended for MARS assembler and is written using MIPS. The goal 
+is to print program arguments(will be in hex),store them in array, convert the 
+hex to decimal and print the sorted array.
+
+base = address of the program argument    # access the arguments by loading the address
+ele = numebr of arguments
+for i in range(ele):
+   print(content at base)
+   base+=4                                # increase 4 bytes to get the address of next argument
+list= []
+for i in range(ele):
+   convert_hex_to_dec(content_at_base)
+   list.append(converted value)
+   print(converted value)
+   base+=4
+ ascending = sorted(list)
+ print(list)
