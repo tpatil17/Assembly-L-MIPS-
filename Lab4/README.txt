@@ -24,9 +24,13 @@ This file includes the assembly code of the lab.
 
 Instructions
 
-This program is intended for MARS assembler and is written using MIPS. The goal 
-is to print program arguments(will be in hex),store them in array, convert the 
-hex to decimal and print the sorted array.
+This program is intended to be run using the MIPS Assembler and Runtime Simulator
+(MARS). Enter the test case as a program argument and run using MARS.
+
+The program arguments will be accessed via the adress at $a1 register. The 
+arguments will be printed as the are accessed. They will then be converted to 
+decimal form, printed and stored ina an array simultaneously. the array will 
+then be sorted and printed.
 
 base = address of the program argument    # access the arguments by loading the address
 ele = numebr of arguments
