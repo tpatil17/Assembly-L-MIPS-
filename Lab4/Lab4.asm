@@ -8,7 +8,7 @@
 .text
  move $s5, $a1       # copy the address
  add $s0, $s0, $a0   # copy the number of elements
- add $t0, $t0, $zero # set a counter
+ add $t0, $t0, $zero # set a counter 
  li $v0, 4
  la $a0, program
     syscall
