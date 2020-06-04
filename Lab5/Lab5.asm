@@ -61,6 +61,13 @@ j done
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  Subroutines defined below
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Clear_bitmap: 
+#	colour = $a0
+#	origin = originalAddress
+#	for i in range(origin,0xfffffffc):
+#		color i
+#		i+=1
+#	return
 #*****************************************************
 #Clear_bitmap: Given a color, will fill the bitmap display with that color.
 #   Inputs:
@@ -86,7 +93,16 @@ clear_bitmap: nop
 #*****************************************************
 # draw_pixel:
 #  Given a coordinate in $a0, sets corresponding value
-#  in memory to the color given by $a1	
+#  in memory to the color given by $a1
+#-----------------------------------------------------
+# draw_pixel:
+#	getCoordinates(co, xx, yy)
+#	xx= xx*4
+#       yy= yy*4
+#	d = (xx * 128) + yy
+#	d = d + originAddress
+#	fill colour at d
+#	return	
 #-----------------------------------------------------
 #   Inputs:
 #    $a0 = coordinates of pixel in format (0x00XX00YY)
@@ -119,6 +135,15 @@ draw_pixel: nop
 #*****************************************************
 # get_pixel:
 #  Given a coordinate, returns the color of that pixel	
+#-----------------------------------------------------
+# get_pixel:
+#	getCoordinates(co, xx, yy)
+#	xx= xx*4
+#       yy= yy*4
+#	d = (xx * 128) + yy
+#	d = d + originAddress
+#	load the value at d in colour
+#       return colour
 #-----------------------------------------------------
 #   Inputs:
 #    $a0 = coordinates of pixel in format (0x00XX00YY)
@@ -274,8 +299,8 @@ draw_circle: nop
 	push($s2)								# save calle save reg to stack
 	push($s3)								# save calle save reg to stack
 	push($s4)
-	#push($k0)								# save reg to stack
-	#push($k1)								# save reg to stack
+	push($k0)								# save reg to stack
+	push($k1)								# save reg to stack
 	li $s0 0								# set x with 0
 	move $s1 $a1								# set y = radius
 	li $s3  3								# further use for d
@@ -315,8 +340,8 @@ draw_circle: nop
 		j while								# loop to while
 		
 	out: nop								# when while loop ends
-	#pop($k1)								# restore register
-	#pop($k0)								# restore regieter
+	pop($k1)								# restore register
+	pop($k0)								# restore regieter
 	pop($s4)
 	pop($s3)								# restore register
 	pop($s2)								# restore register
